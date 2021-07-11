@@ -102,8 +102,8 @@ public class IntList {
         if (A == null) {
             return B;
         }
-        else if {
-            (B == null) return A;
+        else if (B == null) {
+            return A;
         }
         else {
             return new IntList(A.first, catenate(A.rest, B));
