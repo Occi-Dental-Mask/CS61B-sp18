@@ -20,38 +20,33 @@ public class ArrayDeque<T> {
         T[] a = (T[]) new Object[new_capacity];
         System.arraycopy(array, 0, a, 0, size);
         array = a;
+        capacity = array.length;
     }
+
+    /** Adds an item of type T to the front of the deque. */
     public void addFirst(T item) {
         if (front == rear && size == array.length) {
             resize(size * 2);
         }
-        if (front == -1 && array[7] == null) {
-            array[(front + 8) % 8] = item;
-            front = (front + 8) % 8 - 1;
-            size++;
-        } else {
-            int index = (front) % 8; //the next item's index
-            array[front] = item;
-            front--;
-            size++;
-        }
+        array[(front + capacity) % capacity] = item;
+        front = (front + capacity) % capacity - 1;
+        size++;
     }
 
     public void addLast(T item) {
-        if (front == rear && size == array.length) {
+        if (front == rear && size == capacity) {
             resize(size * 2);
         }
-        int index = (rear + 1) % 8;//the next last item's index
-        rear = index;
-        if (array[index] == null) {
-            array[index] = item;
-        }
+        array[(rear + 1) % 8] = item;
+        rear  = (rear + 1) % 8;//the next last item's index
         size++;
     }
 
     public boolean isEmpty() {
-        if (size == 0) return true;
-        else return false;
+        if (size == 0) {
+            return true;
+        }
+        return false;
     }
 
     public int size() {
@@ -59,13 +54,27 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        int i = 0;
-        while (i < size) {
-            int index = (front + i + 1) % size;
-            System.out.print(array[index]);
-            System.out.print(" ");
-            i++;
+        int i, j;
+        if (front < rear) {
+            i = front;
+            while (i < rear) {
+                int index = (i + 1) % capacity;
+                System.out.print(array[index] + " ");
+                i++;
+            }
+        } else if (front > rear) {
+            i = front;
+            while (i + 1 < capacity) {
+                System.out.print(array[i + 1] + " ");
+                i++;
+            }
+            j = 0;
+            while (j <= rear) {
+                System.out.print(array[j] + " ");
+                j++;
+            }
         }
+
     }
 
     public T removeFirst() {
@@ -93,18 +102,27 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        return array[index];
+        int real = (front + 1 + index) % 8;
+        if (array[real] == null){
+            return null;
+        }
+        return array[real];
     }
 
-/*test
+
     public static void main(String[] args) {
-        ArrayDeque<String> a1 = new ArrayDeque<>();
-        a1.addFirst("first added");
-        a1.addLast("second added");
-        a1.addFirst("third added");
-        a1.addFirst("kkkkkk");
-        a1.addLast("hhh");
-        a1.removeFirst();
-        a1.removeLast();
-    }*/
+        ArrayDeque<String > a1 = new ArrayDeque<>();
+        //a1.addFirst("first added");
+        a1.addLast("0");
+        //a1.addFirst("third added");
+       // a1.addFirst("kkkkkk");
+        a1.addLast("1");
+        a1.addFirst("3");
+        System.out.print(a1.get(0));
+        System.out.print(a1.get(1));
+        System.out.print(a1.get(2));
+        a1.printDeque();
+//        a1.removeFirst();
+//        a1.removeLast();
+    }
 }
