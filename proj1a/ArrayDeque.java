@@ -1,8 +1,8 @@
-public class ArrayDeque<G> {
-    int size;
-    G[] array;
-    int front;
-    int rear;
+public class ArrayDeque<T> {
+    private int size;
+    private T[] array;
+    private int front;
+    private int rear;
 
     /*Invariants:
     1.the size is must be determined.
@@ -11,12 +11,12 @@ public class ArrayDeque<G> {
      */
     public ArrayDeque() {
         size = 0;
-        array = (G[]) new Object[8];
+        array = (T[]) new Object[8];
         front = -1;
         rear = -1;
     }
 
-    public void addFirst(G item) {
+    public void addFirst(T item) {
         if (front == -1 && array[7] == null) {
             array[(front + 8) % 8] = item;
             front = (front + 8) % 8 - 1;
@@ -29,7 +29,7 @@ public class ArrayDeque<G> {
         }
     }
 
-    public void addLast(G item) {
+    public void addLast(T item) {
         int index = (rear + 1) % 8;//the next last item's index
         rear = index;
         if (array[index] == null) {
@@ -60,8 +60,8 @@ public class ArrayDeque<G> {
         }
     }
 
-    public G removeFirst() {
-        G removed = array[(front + 1) % 8];
+    public T removeFirst() {
+        T removed = array[(front + 1) % 8];
         if (removed == null) {
             return null;
         } else {
@@ -72,8 +72,8 @@ public class ArrayDeque<G> {
         return removed;
     }
 
-    public G removeLast() {
-        G removed = array[rear];
+    public T removeLast() {
+        T removed = array[rear];
         if (removed == null) {
             return null;
         } else {
@@ -84,7 +84,7 @@ public class ArrayDeque<G> {
         return removed;
     }
 
-    public G get(int index) {
+    public T get(int index) {
         return array[index];
     }
 
