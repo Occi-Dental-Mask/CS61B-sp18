@@ -109,7 +109,7 @@ public class ArrayDeque<T> {
         return array[real];
     }
 
-
+/**
     public static void main(String[] args) {
         ArrayDeque<String > a1 = new ArrayDeque<>();
         //a1.addFirst("first added");
@@ -124,5 +124,5 @@ public class ArrayDeque<T> {
         a1.printDeque();
 //        a1.removeFirst();
 //        a1.removeLast();
-    }
+    }*/
 }
