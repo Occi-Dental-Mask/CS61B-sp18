@@ -22,7 +22,7 @@ public class ArrayDeque<T> {
         T[] a = (T[]) new Object[newCapacity];
         int i = 0;
         while (i < size) {
-            int index = (front + i + 1) % size;
+            int index = (front + i + 1) % capacity;
             a[i] = array[index];
             i++;
         }
