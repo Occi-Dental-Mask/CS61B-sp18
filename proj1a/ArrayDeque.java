@@ -7,9 +7,9 @@ public class ArrayDeque<T> {
 
     /*Invariants:
     1.the size is must be determined.
-    2.the first item's index is always (front+1)%8.Front always points to
+    2.the first item's index is always (front+1)%capacity.Front always points to
      the front of the current's first item.
-    3.the current last item's index is always (rear)%8
+    3.the current last item's index is always rear
      */
     public ArrayDeque() {
         size = 0;
@@ -48,8 +48,8 @@ public class ArrayDeque<T> {
         if (front == rear && size == capacity) {
             resize(size * 2);
         }
-        array[(rear + 1) % 8] = item;
-        rear = (rear + 1) % 8;
+        array[(rear + 1) % capacity] = item;
+        rear = (rear + 1) % capacity;
         size++;
     }
 
@@ -135,7 +135,7 @@ public class ArrayDeque<T> {
         return array[real];
     }
 
-
+/**
     public static void main(String[] args) {
         ArrayDeque<String> a1 = new ArrayDeque<>();
         //a1.addFirst("first added");
@@ -151,5 +151,5 @@ public class ArrayDeque<T> {
         a1.removeFirst();
         a1.removeLast();
         a1.printDeque();
-    }
+    }*/
 }
