@@ -3,10 +3,11 @@ public class ArrayDeque<T> {
     private T[] array;
     private int front;
     private int rear;
-    private int capacity = 8;
+    private int capacity = array.length;
     /*Invariants:
     1.the size is must be determined.
-    2.the first item's index is always (front+1)%8.Front always points to the front of the current's first item.
+    2.the first item's index is always (front+1)%8.Front always points to
+     the front of the current's first item.
     3.the current last item's index is always (rear)%8
      */
     public ArrayDeque() {
@@ -16,11 +17,18 @@ public class ArrayDeque<T> {
         rear = -1;
     }
 
-    private void resize(int new_capacity) {
-        T[] a = (T[]) new Object[new_capacity];
-        System.arraycopy(array, 0, a, 0, size);
+    private void resize(int newCapacity) {
+        T[] a = (T[]) new Object[newCapacity];
+        int i = 0;
+        while (i < size) {
+            int index = (front + i + 1) % size;
+            a[i] = array[index];
+            i++;
+        }
         array = a;
-        capacity = array.length;
+        capacity = newCapacity;
+        front = -1;
+        rear = size - 1;
     }
 
     /** Adds an item of type T to the front of the deque. */
@@ -38,7 +46,7 @@ public class ArrayDeque<T> {
             resize(size * 2);
         }
         array[(rear + 1) % 8] = item;
-        rear  = (rear + 1) % 8;//the next last item's index
+        rear  = (rear + 1) % 8;
         size++;
     }
 
@@ -53,6 +61,7 @@ public class ArrayDeque<T> {
         return size;
     }
 
+    /** Prints the items in the deque from first to last, separated by a space. */
     public void printDeque() {
         int i, j;
         if (front < rear) {
@@ -77,33 +86,45 @@ public class ArrayDeque<T> {
 
     }
 
+    private boolean badUse() {
+        double ratio = size / (double) capacity;
+        if (ratio < 0.25 && capacity > 16) {
+            return true;
+        }
+        return false;
+    }
+
     public T removeFirst() {
-        T removed = array[(front + 1) % 8];
-        if (removed == null) {
+        if (isEmpty()) {
             return null;
-        } else {
-            array[(front + 1) % 8] = null;
-            front = (front + 1) % 8;
         }
         size--;
+        T removed = array[front + 1];
+        array[front + 1] = null;
+        front = (front + 1) % capacity;
+        if (badUse()) {
+            resize(capacity / 2);
+        }
         return removed;
     }
 
     public T removeLast() {
-        T removed = array[rear];
-        if (removed == null) {
+        if (isEmpty()) {
             return null;
-        } else {
-            array[rear] = null;
-            rear = (rear - 1) % 8;
+        }
+        T removed = array[rear];
+        array[rear] = null;
+        rear = (rear - 1 + capacity) % capacity;
+        if (badUse()) {
+            resize(capacity / 2);
         }
         size--;
         return removed;
     }
 
     public T get(int index) {
-        int real = (front + 1 + index) % 8;
-        if (array[real] == null){
+        int real = (front + 1 + index) % capacity;
+        if (array[real] == null) {
             return null;
         }
         return array[real];
