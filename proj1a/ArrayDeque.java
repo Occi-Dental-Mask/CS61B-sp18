@@ -3,7 +3,8 @@ public class ArrayDeque<T> {
     private T[] array;
     private int front;
     private int rear;
-    private int capacity = array.length;
+    private int capacity = 8;
+
     /*Invariants:
     1.the size is must be determined.
     2.the first item's index is always (front+1)%8.Front always points to
@@ -31,7 +32,9 @@ public class ArrayDeque<T> {
         rear = size - 1;
     }
 
-    /** Adds an item of type T to the front of the deque. */
+    /**
+     * Adds an item of type T to the front of the deque.
+     */
     public void addFirst(T item) {
         if (front == rear && size == array.length) {
             resize(size * 2);
@@ -46,7 +49,7 @@ public class ArrayDeque<T> {
             resize(size * 2);
         }
         array[(rear + 1) % 8] = item;
-        rear  = (rear + 1) % 8;
+        rear = (rear + 1) % 8;
         size++;
     }
 
@@ -61,7 +64,9 @@ public class ArrayDeque<T> {
         return size;
     }
 
-    /** Prints the items in the deque from first to last, separated by a space. */
+    /**
+     * Prints the items in the deque from first to last, separated by a space.
+     */
     public void printDeque() {
         int i, j;
         if (front < rear) {
@@ -130,20 +135,21 @@ public class ArrayDeque<T> {
         return array[real];
     }
 
-/**
+
     public static void main(String[] args) {
-        ArrayDeque<String > a1 = new ArrayDeque<>();
+        ArrayDeque<String> a1 = new ArrayDeque<>();
         //a1.addFirst("first added");
         a1.addLast("0");
         //a1.addFirst("third added");
-       // a1.addFirst("kkkkkk");
+        // a1.addFirst("kkkkkk");
         a1.addLast("1");
         a1.addFirst("3");
         System.out.print(a1.get(0));
         System.out.print(a1.get(1));
         System.out.print(a1.get(2));
         a1.printDeque();
-//        a1.removeFirst();
-//        a1.removeLast();
-    }*/
+        a1.removeFirst();
+        a1.removeLast();
+        a1.printDeque();
+    }
 }
