@@ -3,7 +3,7 @@ public class ArrayDeque<T> {
     private T[] array;
     private int front;
     private int rear;
-
+    private int capacity = 8;
     /*Invariants:
     1.the size is must be determined.
     2.the first item's index is always (front+1)%8.Front always points to the front of the current's first item.
@@ -16,7 +16,15 @@ public class ArrayDeque<T> {
         rear = -1;
     }
 
+    private void resize(int new_capacity) {
+        T[] a = (T[]) new Object[new_capacity];
+        System.arraycopy(array, 0, a, 0, size);
+        array = a;
+    }
     public void addFirst(T item) {
+        if (front == rear && size == array.length) {
+            resize(size * 2);
+        }
         if (front == -1 && array[7] == null) {
             array[(front + 8) % 8] = item;
             front = (front + 8) % 8 - 1;
@@ -30,13 +38,13 @@ public class ArrayDeque<T> {
     }
 
     public void addLast(T item) {
+        if (front == rear && size == array.length) {
+            resize(size * 2);
+        }
         int index = (rear + 1) % 8;//the next last item's index
         rear = index;
         if (array[index] == null) {
             array[index] = item;
-        }
-        if (rear == front && size == 8) {
-            System.out.print("队列满了");
         }
         size++;
     }
