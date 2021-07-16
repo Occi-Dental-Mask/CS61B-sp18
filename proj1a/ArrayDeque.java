@@ -5,11 +5,11 @@ public class ArrayDeque<T> {
     private int rear;
     private int capacity = 8;
 
-    /*Invariants:
+    /* Invariants:
     1.the size is must be determined.
-    2.the first item's index is always (front+1 + capacity)%capacity.Front always points to
+    2.the first item's index is always (front +1 + capacity) % capacity. Front always points to
      the front of the current's first item.
-    3.the current last item's index is always （rear + capacity) % capacity*/
+    3.the current last item's index is always （rear + capacity) % capacity */
 
     public ArrayDeque() {
         size = 0;
@@ -103,12 +103,14 @@ public class ArrayDeque<T> {
 
     public T removeFirst() {
         if (isEmpty()) {
+            front = -1;
+            rear = -1;
             return null;
         }
         size--;
         T removed = array[(front + 1) % capacity];
         array[(front + 1) % capacity] = null;
-        front = (front + 1) % capacity;
+        front = (front + 1 + capacity) % capacity;
         if (badUse()) {
             resize(capacity / 2);
         }
@@ -117,6 +119,8 @@ public class ArrayDeque<T> {
 
     public T removeLast() {
         if (isEmpty()) {
+            front = -1;
+            rear = -1;
             return null;
         }
         T removed = array[rear];
@@ -136,23 +140,6 @@ public class ArrayDeque<T> {
         int real = (front + 1 + index + capacity) % capacity;
         return array[real];
     }
-
-/*
-    public static void main(String[] args) {
-        ArrayDeque<String> a1 = new ArrayDeque<>();
-        //a1.addFirst("first added");
-        a1.addLast("0");
-        //a1.addFirst("third added");
-        // a1.addFirst("kkkkkk");
-        a1.addLast("1");
-        a1.addFirst("3");
-        System.out.print(a1.get(0));
-        System.out.print(a1.get(1));
-        System.out.print(a1.get(2));
-        a1.printDeque();
-        a1.removeFirst();
-        a1.removeLast();
-        a1.printDeque();
-    }*/
 }
+
 

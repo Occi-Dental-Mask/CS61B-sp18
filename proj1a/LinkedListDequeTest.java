@@ -1,32 +1,32 @@
 /** Performs some basic linked list tests. */
 public class LinkedListDequeTest {
-	/* Utility method for printing out empty checks. */
-	public static boolean checkEmpty(boolean expected, boolean actual) {
-		if (expected != actual) {
-			System.out.println("isEmpty() returned " + actual + ", but expected: " + expected);
-			return false;
-		}
-		return true;
-	}
+    /** Utility method for printing out empty checks. */
+    public static boolean checkEmpty(boolean expected, boolean actual) {
+        if (expected != actual) {
+            System.out.println("isEmpty() returned " + actual + ", but expected: " + expected);
+            return false;
+        }
+        return true;
+    }
 
-	/* Utility method for printing out empty checks. */
-	public static boolean checkSize(int expected, int actual) {
-		if (expected != actual) {
-			System.out.println("size() returned " + actual + ", but expected: " + expected);
-			return false;
-		}
-		return true;
-	}
+    /* Utility method for printing out empty checks. */
+    public static boolean checkSize(int expected, int actual) {
+        if (expected != actual) {
+            System.out.println("size() returned " + actual + ", but expected: " + expected);
+            return false;
+        }
+        return true;
+    }
 
-	/* Prints a nice message based on whether a test passed. 
-	 * The \n means newline. */
-	public static void printTestStatus(boolean passed) {
-		if (passed) {
-			System.out.println("Test passed!\n");
-		} else {
-			System.out.println("Test failed!\n");
-		}
-	}
+    /* Prints a nice message based on whether a test passed.
+     * The \n means newline. */
+    public static void printTestStatus(boolean passed) {
+        if (passed) {
+            System.out.println("Test passed!\n");
+	    } else {
+		    System.out.println("Test failed!\n");
+        }
+    }
 
 	/** Adds a few things to the list, checking isEmpty() and size() are correct, 
 	  * finally printing the results. 
@@ -52,7 +52,7 @@ public class LinkedListDequeTest {
 		System.out.println("Printing out deque: ");
 		lld1.printDeque();
 
-		printTestStatus(passed);
+        printTestStatus(passed);
 
 	}
 
@@ -77,8 +77,8 @@ public class LinkedListDequeTest {
 
 	}
 
-	public static void main(String[] args) {
-		System.out.println("Running tests.\n");
+    public static void main(String[] args) {
+        System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
 	}
