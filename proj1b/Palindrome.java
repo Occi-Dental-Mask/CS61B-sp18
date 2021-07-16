@@ -9,7 +9,7 @@ public class Palindrome<T> extends LinkedListDeque<T> {
         Deque<Character> a = new Palindrome<>();
         int length = word.length();
         for (i = 0; i < length; i++) {
-            char added = word.charAt(i);//from stackoverflow
+            char added = word.charAt(i); //from stackoverflow
             a.addLast(added);
         }
         return a;
@@ -25,7 +25,7 @@ public class Palindrome<T> extends LinkedListDeque<T> {
         Deque<Character> wDeque = wordToDeque(word);
         String reversedWord = helper(wDeque, word);
 
-        if (word.equals(reversedWord)) {//字符串不能直接用==比较
+        if (word.equals(reversedWord)) { //字符串不能直接用==比较
             return true;
         }
         return false;
@@ -53,7 +53,7 @@ public class Palindrome<T> extends LinkedListDeque<T> {
                 i++;
                 continue;
             } else {
-                if (cc.equalChars(word.charAt(i), reversed.charAt(i)) == false) {
+                if (!cc.equalChars(word.charAt(i), reversed.charAt(i))) {
                     return false;
                 }
             }

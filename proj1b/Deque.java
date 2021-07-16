@@ -1,4 +1,4 @@
-interface Deque <T>{
+interface Deque<T> {
 
     public void addFirst(T item);
 
@@ -16,5 +16,3 @@ interface Deque <T>{
 
     public T get(int index);
 }
-
-
