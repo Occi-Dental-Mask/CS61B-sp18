@@ -1,6 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
-import static org.junit.Assert.assertEquals;
 
 public class Palindrome<T> extends LinkedListDeque<T> {
     public Palindrome() {
