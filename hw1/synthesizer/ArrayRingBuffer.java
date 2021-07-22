@@ -90,8 +90,8 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         // TODO: Return the first item. None of your instance variables should change.
         try{
             return rb[first];
-        } catch (RuntimeException) {
-            throw new RuntimeException("")
+        } catch (RuntimeException e) {
+            throw new RuntimeException("");
         }
     }
 
