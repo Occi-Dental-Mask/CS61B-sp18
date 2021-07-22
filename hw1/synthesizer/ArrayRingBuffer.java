@@ -17,7 +17,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     public Iterator<T>  iterator() {
         return new KeyIterator();
     }
-    public class KeyIterator implements Iterator<T>{
+    private class KeyIterator implements Iterator<T>{
         private int ptr;
         public KeyIterator() {
             ptr = first;
@@ -88,7 +88,11 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     @Override
     public T peek() {
         // TODO: Return the first item. None of your instance variables should change.
-        return rb[first];
+        try{
+            return rb[first];
+        } catch (RuntimeException) {
+            throw new RuntimeException("")
+        }
     }
 
     // TODO: When you get to part 5, implement the needed code to support iteration.
