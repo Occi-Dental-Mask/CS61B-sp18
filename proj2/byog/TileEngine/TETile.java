@@ -31,8 +31,8 @@ public class TETile {
     /**
      * Full constructor for TETile objects.
      * @param character The character displayed on the screen.
-     * @param textColor The color of the character itself.
-     * @param backgroundColor The color drawn behind the character.
+     * @param textColor The color character itself.
+     *      * @param backgroundCof the lor The color drawn behind the character.
      * @param description The description of the tile, shown in the GUI on hovering over the tile.
      * @param filepath Full path to image to be used for this tile. Must be correct size (16x16)
      */

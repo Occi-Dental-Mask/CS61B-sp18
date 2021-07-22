@@ -30,6 +30,19 @@ public class RandomWorldDemo {
         }
     }
 
+    /**
+     * Fills the given 2D array of tiles with black tiles
+     */
+    public static void fillWithBlackTiles(TETile[][] tiles) {
+        int height = tiles[0].length;
+        int width = tiles.length;
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                tiles[x][y] = TileSet.NOTHING;
+            }
+        }
+    }
+
     /** Picks a RANDOM tile with a 33% change of being
      *  a wall, 33% chance of being a flower, and 33%
      *  chance of being empty space.
@@ -43,16 +56,23 @@ public class RandomWorldDemo {
             default: return Tileset.NOTHING;
         }
     }
+    public static void addHexagon(int size, int x, int y){
 
+    }
     public static void main(String[] args) {
         TERenderer ter = new TERenderer();
         ter.initialize(WIDTH, HEIGHT);
 
         TETile[][] randomTiles = new TETile[WIDTH][HEIGHT];
+
         fillWithRandomTiles(randomTiles);
 
         ter.renderFrame(randomTiles);
     }
+
+
+
+
 
 
 }
