@@ -16,6 +16,7 @@ public class Percolation {
         if (N < 0) {
             throw new IllegalArgumentException();
         }
+
         this.size = N;
         virtualTop = N * N;
         virtualBottom = N * N + 1;
@@ -27,10 +28,11 @@ public class Percolation {
             quickUnion1.union(virtualBottom, transTo(size - 1, j));
             quickUnion2.union(virtualTop, transTo(0, j));
         }
-
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                a[i][j] = false;
+        if (N != 1) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    a[i][j] = false;
+                }
             }
         }
     }
