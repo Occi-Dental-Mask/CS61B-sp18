@@ -13,6 +13,9 @@ public class Percolation {
 
     /* create N-by-N grid, with all sites initially blocked */
     public Percolation(int N) {
+        if (N < 0) {
+            throw new IllegalArgumentException();
+        }
         this.size = N;
         virtualTop = N * N;
         virtualBottom = N * N + 1;
@@ -34,6 +37,9 @@ public class Percolation {
 
     // open the site (row, col) if it is not open already
     public void open(int row, int col) {
+        if (a[row][col] == true) {
+            return;
+        }//allow duplicates
         a[row][col] = true;
         openSize++;
         union4D(row, col, row - 1, col);//左

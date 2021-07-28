@@ -4,10 +4,13 @@ import edu.princeton.cs.introcs.StdStats;
 import java.lang.Math.*;
 public class PercolationStats {
     private final int numOfTime;
-    private double ti[];
+    private double[] ti;
 
     // perform T independent experiments on an N-by-N grid
     public PercolationStats(int N, int T, PercolationFactory pf) {
+        if (N <= 0 || T <= 0) {
+            throw new IllegalArgumentException();
+        }
         int t = 0;
         this.numOfTime = T;
         this.ti = new double[T];
