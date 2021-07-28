@@ -17,7 +17,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     public Iterator<T>  iterator() {
         return new KeyIterator();
     }
-    private class KeyIterator implements Iterator<T>{
+    private class KeyIterator implements Iterator<T> {
         private int ptr;
         public KeyIterator() {
             ptr = first;
