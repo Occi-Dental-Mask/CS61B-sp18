@@ -1,5 +1,7 @@
 package hw3.hash;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,15 +16,20 @@ public class HashTableVisualizer {
            nicely, be sure to try
            scale = 0.5, N = 2000, M = 100. */
 
-        double scale = 1.0;
-        int N = 100;
-        int M = 10;
+        double scale = 0.5;
+        int N = 2000;
+        int M = 100;
 
         HashTableDrawingUtility.setScale(scale);
         List<Oomage> oomies = new ArrayList<>();
+        List<Oomage> oomies1 = new ArrayList<>();
         for (int i = 0; i < N; i += 1) {
-           oomies.add(SimpleOomage.randomSimpleOomage());
+           oomies1.add(SimpleOomage.randomSimpleOomage());
         }
+        for (int i = 0; i < N; i += 1) {
+            oomies.add(ComplexOomage.randomComplexOomage());
+        }
+        visualize(oomies1, M, scale);
         visualize(oomies, M, scale);
     }
 
