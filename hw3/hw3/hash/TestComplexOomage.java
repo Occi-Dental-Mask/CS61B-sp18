@@ -40,10 +40,10 @@ public class TestComplexOomage {
     @Test
     public void testWithDeadlyParams() {
         List<Oomage> deadlyList = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 20; i++) {
             List<Integer> p = new ArrayList<>();
             for (int j = 0; j < i; j++) {
-                p.add(5 * j);
+                p.add(10 * j);
             }
 
             Oomage o = new ComplexOomage(p);
